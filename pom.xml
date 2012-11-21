@@ -130,6 +130,28 @@
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
+              <version>6.1.22</version>
+              <configuration>
+                <systemProperties>
+                  <systemProperty>
+                    <!-- show the stapler evaluation during execution -->
+                    <name>stapler.trace</name>
+                    <value>true</value>
+                  </systemProperty>
+                  <systemProperty>
+                    <!-- always reload scripts during debugging -->
+                    <name>stapler.jelly.noCache</name>
+                    <value>true</value>
+                  </systemProperty>
+                  <systemProperty>
+                    <!-- load view resources from the source directly, again for real time change -->
+                    <name>stapler.resourcePath</name>
+                    <value>
+                        src/main/resources
+                    </value>
+                  </systemProperty>
+                </systemProperties>
+              </configuration>
             </plugin>
         </plugins>
     </build>
