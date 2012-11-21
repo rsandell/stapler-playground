@@ -1,0 +1,11 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define">
+    <html>
+        <head>
+            <title>Stapler works</title>
+        </head>
+        <body>
+            <h1>It Works!</h1>
+            <p>Stapler works!</p>
+        </body>
+    </html>
+</j:jelly>

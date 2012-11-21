@@ -1,0 +1,17 @@
+<web-app>
+    <servlet>
+        <servlet-name>Stapler</servlet-name>
+        <servlet-class>org.kohsuke.stapler.Stapler</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Stapler</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>net.joinedminds.staplertest.WebAppMain</listener-class>
+    </listener>
+
+    <display-name>Archetype Created Web Application</display-name>
+</web-app>
