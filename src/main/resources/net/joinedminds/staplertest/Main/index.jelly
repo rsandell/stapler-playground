@@ -1,11 +1,13 @@
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define">
-    <html>
-        <head>
-            <title>Stapler works</title>
-        </head>
-        <body>
-            <h1>It Works!</h1>
-            <p>Stapler works!</p>
-        </body>
-    </html>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout">
+    <l:layout title="Testing">
+        <!--<l:header>
+            <script language="javascript">
+                //Do something here for fun
+                x = 2
+            </script>
+        </l:header>-->
+        <l:main>
+            <h1>Hello World!</h1>
+        </l:main>
+    </l:layout>
 </j:jelly>

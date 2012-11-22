@@ -1,0 +1,35 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+         xmlns:l="/lib/layout" xmlns:i="jelly:fmt" xmlns:x="jelly:xml">
+    <st:documentation>
+        Outer-most tag for a normal (non-AJAX) HTML rendering.
+        <st:attribute name="title" use="required">
+            Title of the HTML page. Rendered into &lt;title> tag.
+        </st:attribute>
+    </st:documentation>
+
+    <st:header name="Expires" value="0"/>
+    <st:header name="Cache-Control" value="no-cache,must-revalidate"/>
+    <st:contentType value="text/html;charset=UTF-8"/>
+
+    <j:new var="h" className="net.joinedminds.staplertest.Functions" />
+    ${h.initPageVariables(context)}
+
+    <j:set var="_" value="${request.getSession()}"/>
+
+    <x:doctype name="html"/>
+    <html>
+        <head>
+            <title>${h.appendIfNotNull(title, ' [Play Along]', 'Play Along')}</title>
+            <link rel="stylesheet" href="${resURL}/css/style.css" type="text/css"/>
+            <link rel="shortcut icon" href="${resURL}/favicon.ico" type="image/vnd.microsoft.icon"/>
+            <meta name="ROBOTS" content="INDEX,NOFOLLOW"/>
+            <j:set var="mode" value="header"/>
+            <d:invokeBody/>
+        </head>
+        <body>
+            <j:set var="mode" value="main-panel" />
+            <d:invokeBody/>
+        </body>
+    </html>
+</j:jelly>
