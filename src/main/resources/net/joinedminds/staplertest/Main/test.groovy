@@ -4,6 +4,6 @@ html() {
     }
     body() {
         h1("Hello")
-        div(){text("Go Groovy!")}
+        div(){text("Go Groovy again and again!")}
     }
 }
