@@ -31,4 +31,8 @@ public class Functions {
     public static String appendIfNotNull(String text, String suffix, String nullText) {
         return text == null ? nullText : text + suffix;
     }
+
+    public static Object ifNull(Object obj, Object thenVal) {
+        return obj == null ? thenVal : obj;
+    }
 }

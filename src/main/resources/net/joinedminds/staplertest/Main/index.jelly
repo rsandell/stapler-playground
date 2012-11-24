@@ -1,13 +1,5 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout">
     <l:layout title="Testing">
-        <!--<l:header>
-            <script language="javascript">
-                //Do something here for fun
-                x = 2
-            </script>
-        </l:header>-->
-        <l:main>
-            <h1>Hello World!</h1>
-        </l:main>
+        <h1>Hello World!</h1>
     </l:layout>
 </j:jelly>

@@ -1,0 +1,26 @@
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+         xmlns:l="/lib/layout" xmlns:i="jelly:fmt" xmlns:x="jelly:xml">
+    <st:documentation>
+        Iterates over the rows and columns of a GridMaker.
+        The body of this tag will render each cell in the grid.
+        The object will have the var name "col".
+        <st:attribute name="grid" use="required">
+            The GridMaker object
+        </st:attribute>
+        <st:attribute name="spanClass">
+            The class to use for columns
+        </st:attribute>
+    </st:documentation>
+    <j:set var="colClass" value="${h.ifNull(spanClass, 'span1')}"/>
+
+    <j:forEach var="row" items="${grid.getRows()}">
+        <div class="row">
+            <j:forEach var="col" items="${row}">
+                <div class="${colClass}">
+                    <d:invokeBody/>
+                </div>
+            </j:forEach>
+        </div>
+    </j:forEach>
+
+</j:jelly>
