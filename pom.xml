@@ -68,6 +68,15 @@
 
     <build>
         <finalName>staplertest</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.jvnet.localizer</groupId>
+                    <artifactId>maven-localizer-plugin</artifactId>
+                    <version>1.14</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <!-- use JDK 1.6 -->
             <plugin>
@@ -133,6 +142,22 @@
                         <goals>
                             <goal>generate-taglib-interface</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.localizer</groupId>
+                <artifactId>maven-localizer-plugin</artifactId>
+                <!-- version specified in grandparent pom -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <fileMask>Messages.properties</fileMask>
+                            <outputDirectory>target/generated-sources/localizer</outputDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

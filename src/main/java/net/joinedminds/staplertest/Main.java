@@ -19,7 +19,7 @@ public class Main {
 
     public Main() {
         items = new LinkedList<Item>();
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 300; i++) {
             items.add(new Item());
         }
     }
@@ -33,5 +33,14 @@ public class Main {
 
     public List<Item> getItems() {
         return items;
+    }
+
+    public Item getItem(int id) {
+        for(Item i : items) {
+            if(i.getId() == id) {
+                return i;
+            }
+        }
+        return null;
     }
 }

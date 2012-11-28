@@ -11,13 +11,19 @@ public class Item {
 
     public static int count = 1;
 
+    private int id;
     private String name;
 
     public Item() {
-        name = "Item " + (count++);
+        id = (count++);
+        name = "Item " + id;
     }
 
     public String getName() {
         return name;
+    }
+
+    public int getId() {
+        return id;
     }
 }

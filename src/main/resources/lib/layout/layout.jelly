@@ -6,6 +6,9 @@
         <st:attribute name="title" use="required">
             Title of the HTML page. Rendered into &lt;title> tag.
         </st:attribute>
+        <st:attribute name="contextMenu" use="optional">
+            Current main menu for the page.
+        </st:attribute>
     </st:documentation>
 
     <st:header name="Expires" value="0"/>
@@ -51,8 +54,38 @@
                                 <li class="active"><a href="#">Home</a></li>
                                 <li><a href="#about">About</a></li>
                                 <li><a href="#contact">Contact</a></li>
+
                             </ul>
                         </div>
+                        <j:if test="${not empty contextMenu}">
+                            <ul class="nav pull-right">
+                                <li id="${contextMenu.id}" class="dropdown">
+                                    <a id="${contextMenu.id}-toggle" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        ${contextMenu.displayName}
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="${contextMenu.id}-toggle">
+                                        <j:forEach var="mItem" items="${contextMenu.menuItems}">
+                                            <j:choose>
+                                                <j:when test="${mItem.isDivider()}">
+                                                    <li class="divider"/>
+                                                </j:when>
+                                                <j:otherwise>
+                                                    <li>
+                                                        <a tabindex="${mItem.tabIndex}" href="${mItem.href}">
+                                                            <j:if test="${not empty mItem.icon}">
+                                                                <i class="${mItem.icon}"/>
+                                                            </j:if>
+                                                            ${mItem.displayName}
+                                                        </a>
+                                                    </li>
+                                                </j:otherwise>
+                                            </j:choose>
+                                        </j:forEach>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </j:if>
                     </div>
                 </div>
             </div>

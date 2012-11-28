@@ -8,8 +8,8 @@ l.layout(title: "Testing") {
     div("class": "row") {
         h1("Testing Wohoo!")
     }
-    def grid = new GridMaker<Item>(my.getItems())
-    l.grid("grid": grid) {
+    def grid = new GridMaker<Item>(my.getItems(), 6)
+    l.grid("grid": grid, "spanClass": "span2") {
         st.include("it": col, "page": "listitem.jelly")
     }
 }
