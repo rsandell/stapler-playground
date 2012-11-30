@@ -8,4 +8,5 @@ st = namespace("jelly:stapler")
 
 l.layout(title: "[Item]    " + my.getName(), contextMenu: Functions.DEFAULT_ITEM_CONTEXT_MENU) {
     h1(my.getName())
+    div(class: "well well-large", my.getDescription())
 }

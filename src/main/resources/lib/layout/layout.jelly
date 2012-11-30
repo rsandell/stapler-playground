@@ -15,7 +15,7 @@
     <st:header name="Cache-Control" value="no-cache,must-revalidate"/>
     <st:contentType value="text/html;charset=UTF-8"/>
 
-    <j:new var="h" className="net.joinedminds.staplertest.Functions" />
+    <j:new var="h" className="net.joinedminds.staplertest.Functions"/>
     ${h.initPageVariables(context)}
 
     <j:set var="_" value="${request.getSession()}"/>
@@ -28,7 +28,7 @@
             <link href="${resURL}/bootstrap/css//bootstrap.min.css" rel="stylesheet" media="screen"/>
             <style>
                 body {
-                    padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+                padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
                 }
             </style>
             <link href="${resURL}/bootstrap/css//bootstrap-responsive.min.css" rel="stylesheet"/>
@@ -51,16 +51,26 @@
                         <a class="brand" href="#">Project name</a>
                         <div class="nav-collapse collapse">
                             <ul class="nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#about">About</a></li>
-                                <li><a href="#contact">Contact</a></li>
+                                <li class="active">
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    <a href="test">Test</a>
+                                </li>
+                                <li>
+                                    <a href="#about">About</a>
+                                </li>
+                                <li>
+                                    <a href="#contact">Contact</a>
+                                </li>
 
                             </ul>
                         </div>
                         <j:if test="${not empty contextMenu}">
                             <ul class="nav pull-right">
                                 <li id="${contextMenu.id}" class="dropdown">
-                                    <a id="${contextMenu.id}-toggle" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <a id="${contextMenu.id}-toggle" class="dropdown-toggle" data-toggle="dropdown"
+                                       href="#">
                                         ${contextMenu.displayName}
                                         <b class="caret"></b>
                                     </a>
@@ -91,6 +101,21 @@
             </div>
 
             <div class="container">
+                <j:set var="breadcrumbs" value="${h.getBreadcrumbs()}"/>
+                <j:if test="${not empty breadcrumbs}">
+                    <ul class="breadcrumb">
+                        <j:forEach items="${breadcrumbs}" var="b" varStatus="iterStat">
+                            <j:choose>
+                                <j:when test="${iterStat.last}">
+                                    <li class="active">${b.display}</li>
+                                </j:when>
+                                <j:otherwise>
+                                    <li><a href="${b.url}">${b.display}</a> <span class="divider"><i class="icon-chevron-right"/></span></li>
+                                </j:otherwise>
+                            </j:choose>
+                        </j:forEach>
+                    </ul>
+                </j:if>
                 <d:invokeBody/>
             </div>
 

@@ -12,7 +12,7 @@ import java.util.List;
  * Time: 22:51
  * To change this template use File | Settings | File Templates.
  */
-public class Main {
+public class Main implements NavItem {
     private static Main instance;
 
     private List<Item> items;
@@ -42,5 +42,10 @@ public class Main {
             }
         }
         return null;
+    }
+
+    @Override
+    public String getNavDisplay() {
+        return "Home";
     }
 }
