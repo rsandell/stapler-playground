@@ -1,5 +1,7 @@
 package net.joinedminds.staplertest;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import org.kohsuke.stapler.Stapler;
 
 import javax.servlet.ServletContextEvent;
@@ -14,8 +16,8 @@ import javax.servlet.ServletContextListener;
  */
 public class WebAppMain implements ServletContextListener {
     public void contextInitialized(ServletContextEvent event) {
-        // BookStore.theStore is the singleton instance of the application
-        Stapler.setRoot(event, Main.getInstance());
+        Injector injector = Guice.createInjector(new StaplerTestModule());
+        Stapler.setRoot(event, injector.getInstance(Main.class));
     }
 
     public void contextDestroyed(ServletContextEvent event) {

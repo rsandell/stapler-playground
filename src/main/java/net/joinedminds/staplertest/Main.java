@@ -1,5 +1,6 @@
 package net.joinedminds.staplertest;
 
+import com.google.inject.Singleton;
 import net.joinedminds.staplertest.model.Item;
 
 import java.util.LinkedList;
@@ -12,8 +13,8 @@ import java.util.List;
  * Time: 22:51
  * To change this template use File | Settings | File Templates.
  */
+@Singleton
 public class Main implements NavItem {
-    private static Main instance;
 
     private List<Item> items;
 
@@ -22,13 +23,6 @@ public class Main implements NavItem {
         for (int i = 0; i < 300; i++) {
             items.add(new Item());
         }
-    }
-
-    public static Main getInstance() {
-        if (instance == null) {
-            instance = new Main();
-        }
-        return instance;
     }
 
     public List<Item> getItems() {

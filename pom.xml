@@ -50,6 +50,11 @@
             <version>2.4</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
+        </dependency>
     </dependencies>
 
     <repositories>
@@ -93,6 +98,8 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.0.0.M3</version>
                 <configuration>
+                    <stopKey>STOP</stopKey>
+                    <stopPort>10002</stopPort>
                     <systemProperties>
                         <systemProperty>
                             <!-- show the stapler evaluation during execution -->
