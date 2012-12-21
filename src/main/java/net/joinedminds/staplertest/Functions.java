@@ -23,6 +23,7 @@ public class Functions {
     public static final DropDown DEFAULT_ITEM_CONTEXT_MENU = new DropDown("pageContextMenu", Messages._menu_Edit(), new LinkedList<DropDown.MenuItem>());
 
     static {
+        DEFAULT_ITEM_CONTEXT_MENU.getMenuItems().add(new DropDown.MenuItem("/new", "icon-file", Messages._menu_New()));
         DEFAULT_ITEM_CONTEXT_MENU.getMenuItems().add(new DropDown.MenuItem("edit", "icon-edit", Messages._menu_Edit()));
         DEFAULT_ITEM_CONTEXT_MENU.getMenuItems().add(new DropDown.MenuItem("delete", "icon-remove-circle", Messages._menu_Remove()));
     }

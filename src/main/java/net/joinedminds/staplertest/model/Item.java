@@ -1,10 +1,12 @@
 package net.joinedminds.staplertest.model;
 
 import net.joinedminds.staplertest.Functions;
+import net.joinedminds.staplertest.Main;
 import net.joinedminds.staplertest.NavItem;
 import org.kohsuke.stapler.StaplerRequest;
 import org.kohsuke.stapler.StaplerResponse;
 
+import javax.persistence.Id;
 import java.io.IOException;
 import java.util.List;
 
@@ -17,15 +19,17 @@ import java.util.List;
  */
 public class Item implements NavItem {
 
-    public static int count = 1;
-
-    private int id;
+    @Id
+    private String id;
     private String name;
     String description;
 
     public Item() {
-        id = (count++);
-        name = "Item " + id;
+    }
+
+    public Item(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public String getName() {
@@ -36,8 +40,12 @@ public class Item implements NavItem {
         this.name = name;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
+    }
+
+    public String getNavId() {
+        return getId().substring(1);
     }
 
     public String getDescription() {
@@ -50,6 +58,7 @@ public class Item implements NavItem {
 
     public void doEditSubmit(StaplerRequest request, StaplerResponse response) throws IOException {
         request.bindParameters(this);
+        Main.getInstance().getDb().save(this);
         List<Functions.Breadcrumb> breadcrumbs = Functions.getBreadcrumbs();
 
         if (!breadcrumbs.isEmpty()) {

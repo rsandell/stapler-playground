@@ -1,8 +1,14 @@
 package net.joinedminds.staplertest;
 
+import com.google.inject.Guice;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import net.joinedminds.staplertest.db.DB;
 import net.joinedminds.staplertest.model.Item;
+import org.kohsuke.stapler.StaplerRequest;
+import org.kohsuke.stapler.StaplerResponse;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,30 +22,41 @@ import java.util.List;
 @Singleton
 public class Main implements NavItem {
 
-    private List<Item> items;
+    private DB db;
+    private static Main instance;
 
-    public Main() {
-        items = new LinkedList<Item>();
-        for (int i = 0; i < 300; i++) {
-            items.add(new Item());
-        }
+    @Inject
+    public Main(DB db) {
+        instance = this;
+        this.db = db;
     }
 
     public List<Item> getItems() {
-        return items;
+        return db.getItems();
     }
 
-    public Item getItem(int id) {
-        for(Item i : items) {
-            if(i.getId() == id) {
-                return i;
-            }
-        }
-        return null;
+    public Item getItem(String id) {
+        return db.getItem(id);
     }
 
     @Override
     public String getNavDisplay() {
         return "Home";
+    }
+
+    public void doNewSubmit(StaplerRequest request, StaplerResponse response) throws IOException {
+        String name = request.getParameter("name");
+        Item item = db.createItem();
+        item.setName(name);
+        item = db.save(item);
+        response.sendRedirect2("/item/" + item.getNavId());
+    }
+
+    public static Main getInstance() {
+        return instance;
+    }
+
+    public DB getDb() {
+        return db;
     }
 }
